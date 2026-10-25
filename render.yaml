@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: instagram-mcp
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m src.http_server
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.7"
+      - key: MCP_SECRET_PATH
+        generateValue: true
+      - key: FACEBOOK_APP_ID
+        sync: false
+      - key: FACEBOOK_APP_SECRET
+        sync: false
+      - key: INSTAGRAM_ACCESS_TOKEN
+        sync: false
+      - key: INSTAGRAM_BUSINESS_ACCOUNT_ID
+        sync: false
